@@ -87,7 +87,7 @@ VACUUM employees RETAIN 0 HOURS
 
 -- COMMAND ----------
 
-SET spark.databricks.delta.retentionDurationCheck.enabled = false;
+SET `spark.databricks.delta.retentionDurationCheck.enabled`="false";
 
 -- COMMAND ----------
 
@@ -118,3 +118,7 @@ SELECT * FROM employees
 -- COMMAND ----------
 
 -- MAGIC %fs ls 'dbfs:/user/hive/warehouse/employees'
+
+-- COMMAND ----------
+
+

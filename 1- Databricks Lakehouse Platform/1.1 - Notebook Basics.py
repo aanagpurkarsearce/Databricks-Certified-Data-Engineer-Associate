@@ -70,4 +70,13 @@ display(files)
 
 # COMMAND ----------
 
+files = dbutils.fs.ls('/databricks-datasets/')
+print(files)
+
+# COMMAND ----------
+
+display(files)
+
+# COMMAND ----------
+
 

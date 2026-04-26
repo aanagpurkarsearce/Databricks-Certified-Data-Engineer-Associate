@@ -64,11 +64,21 @@ DROP TABLE external_default
 
 -- COMMAND ----------
 
+drop schema new_default;
+
+-- COMMAND ----------
+
 CREATE SCHEMA new_default
 
 -- COMMAND ----------
 
 DESCRIBE DATABASE EXTENDED new_default
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC
+-- MAGIC dbutils.fs.rm("dbfs:/mnt/demo/external_new_default", True)
 
 -- COMMAND ----------
 
@@ -117,6 +127,10 @@ DROP TABLE external_new_default;
 
 -- COMMAND ----------
 
+drop schema custom cascade;
+
+-- COMMAND ----------
+
 CREATE SCHEMA custom
 LOCATION 'dbfs:/Shared/schemas/custom.db'
 
@@ -126,9 +140,15 @@ DESCRIBE DATABASE EXTENDED custom
 
 -- COMMAND ----------
 
+-- MAGIC %python
+-- MAGIC
+-- MAGIC dbutils.fs.rm("dbfs:/mnt/demo/external_custom", True)
+
+-- COMMAND ----------
+
 USE custom;
 
-CREATE TABLE managed_custom
+CREATE TABLE if not EXISTS managed_custom
   (width INT, length INT, height INT);
   
 INSERT INTO managed_custom
@@ -163,3 +183,7 @@ DROP TABLE external_custom;
 -- COMMAND ----------
 
 -- MAGIC %fs ls 'dbfs:/mnt/demo/external_custom'
+
+-- COMMAND ----------
+
+

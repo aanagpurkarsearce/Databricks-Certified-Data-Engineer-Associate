@@ -78,6 +78,13 @@ AS SELECT * FROM smartphones
 
 -- COMMAND ----------
 
+create temporary table global_temp_table_latest_phones
+as select * from smartphones
+  where year > 2020
+  order by year desc;
+
+-- COMMAND ----------
+
 SELECT * FROM global_temp.global_temp_view_latest_phones;
 
 -- COMMAND ----------
